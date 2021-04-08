@@ -37,10 +37,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            Yii::$app->user->identity->isadmin ? (['label' => 'Files', 'url' => ['/file']]) : '',
-            Yii::$app->user->identity->isadmin ? (['label' => 'Users', 'url' => ['/user']]) : '',
-            Yii::$app->user->identity->isadmin ? (['label' => 'User Balance', 'url' => ['/user-balance']]) : '',
-            !Yii::$app->user->identity->isadmin ? (['label' => 'My Files', 'url' => ['/user/myfiles']]) : '',
+             ['label' => 'Files', 'url' => ['/file']],
+            ['label' => 'Users', 'url' => ['/user']],
+            ['label' => 'User Balance', 'url' => ['/user-balance']],
+            ['label' => 'My Files', 'url' => ['/user/myfiles']],
             Yii::$app->user->isGuest ?
                 (['label' => 'Login', 'url' => ['/site/login']])
                 :
