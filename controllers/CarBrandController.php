@@ -2,20 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\User;
-use app\models\UserFile;
 use Yii;
-use app\models\File;
-use app\models\FileSearch;
+use app\models\CarBrand;
+use app\models\CarBrandSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * FileController implements the CRUD actions for File model.
+ * CarBrandController implements the CRUD actions for CarBrand model.
  */
-class FileController extends Controller
+class CarBrandController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,12 +30,12 @@ class FileController extends Controller
     }
 
     /**
-     * Lists all File models.
+     * Lists all CarBrand models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new FileSearch();
+        $searchModel = new CarBrandSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +45,7 @@ class FileController extends Controller
     }
 
     /**
-     * Displays a single File model.
+     * Displays a single CarBrand model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,19 +58,16 @@ class FileController extends Controller
     }
 
     /**
-     * Creates a new File model.
+     * Creates a new CarBrand model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new File();
+        $model = new CarBrand();
 
-        if ($model->load(Yii::$app->request->post()))  {
-            $model->file = UploadedFile::getInstance($model, 'file');
-            if ( $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -82,7 +76,7 @@ class FileController extends Controller
     }
 
     /**
-     * Updates an existing File model.
+     * Updates an existing CarBrand model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -102,7 +96,7 @@ class FileController extends Controller
     }
 
     /**
-     * Deletes an existing File model.
+     * Deletes an existing CarBrand model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,28 +110,18 @@ class FileController extends Controller
     }
 
     /**
-     * Finds the File model based on its primary key value.
+     * Finds the CarBrand model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return File the loaded model
+     * @return CarBrand the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = File::findOne($id)) !== null) {
+        if (($model = CarBrand::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-    public function actionBuy($id){
-        $u = Yii::$app->user->identity;
-        $Uf = new UserFile();
-        $Uf->user_id = $u->id;
-        $Uf->file_id = $id;
-        $Uf->save();
-
-    }
 }
-

@@ -5,9 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\File */
 
-$this->title = 'Create File';
-$this->params['breadcrumbs'][] = ['label' => 'Files', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Добавление файла';
 ?>
 <div class="file-create">
 

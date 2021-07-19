@@ -17,6 +17,11 @@ class File extends \yii\db\ActiveRecord
 {
     public $file;
     const FILE_ACTIVE = ['1' => 'Активен', '0' => 'Не активен'];
+    const FUEL = [
+        '0' => 'Бензин',
+        '1' => 'Дизель',
+        '2' => 'Гибрид',
+        '3' => 'Электро'];
     /**
      * {@inheritdoc}
      */
@@ -31,13 +36,17 @@ class File extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_id', 'name'], 'required'],
-            [['cat_id', 'name', 'active'], 'integer'],
+            [['cat_id', 'active', 'brand_id', 'model_id', 'fuel'], 'integer'],
+            [['name'], 'string', 'max' => 500],
             [['path'], 'string', 'max' => 500],
+            [['motor'], 'string', 'max' => 40],
             [['file'], 'file'],
             [['price'], 'number'],
+            [['desc_ru'], 'safe'],
+            [['desc_en'], 'safe'],
         ];
     }
+
 
     /**
      * {@inheritdoc}
@@ -47,9 +56,16 @@ class File extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'cat_id' => 'Cat ID',
-            'name' => 'Name',
-            'path' => 'Path',
-            'active' => 'Active',
+            'brand_id' => 'Марка авто',
+            'model_id' => 'Модель авто',
+            'motor' => 'Марка двигателя',
+            'fuel' => 'Вид топлива',
+            'name' => 'Название',
+            'path' => 'Путь к файлу',
+            'active' => 'Активность',
+            'price' => 'Цена',
+            'desc_ru' => 'Описание файла на русском',
+            'desc_en' => 'Описание файла на английском',
         ];
     }
 
