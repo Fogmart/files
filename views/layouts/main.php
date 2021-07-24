@@ -17,6 +17,10 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script
@@ -61,24 +65,33 @@ AppAsset::register($this);
                             >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/file">Дампы</a>
+                            <a class="nav-link" href="/brand">Дампы</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Dash</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Редактор</a>
-                        </li>
+                        <? if(!Yii::$app->user->isGuest)
+                            if(Yii::$app->user->identity->isadmin){?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin">Редактор</a>
+                                </li>
+                        <? } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Поддержка</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Вход</a>
+                            <? if(Yii::$app->user->isGuest){?>
+                                <a class="nav-link" href="/site/login">Вход</a>
+                            <? } else {?>
+                                <a class="nav-link" href="/site/logout">Выход</a>
+                            <? } ?>
                         </li>
                     </ul>
                     <div class="nav-info">
-                        <a href="#">login@mail.ru</a>
-                        <p href="#">1500</p>
+                        <? if(!Yii::$app->user->isGuest){?>
+                            <a href="/cabinet"><?=Yii::$app->user->identity->email?> </a>
+                            <p href="#"><?=Yii::$app->user->identity->balance?></p>
+                        <? }?>
                     </div>
                 </div>
             </nav>
@@ -122,6 +135,7 @@ AppAsset::register($this);
 
     <div class="container">
         <?= Breadcrumbs::widget([
+            'homeLink' => ['label' => 'Редактор', 'url' => '/admin'],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>

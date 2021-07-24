@@ -125,9 +125,9 @@ class UserController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionMyfiles(){
-        $files=Yii::$app->user->identity->userFiles;
-        return $this->render('myfiles', compact('files'));
+    public function actionCabinet(){
+        $myfiles=Yii::$app->user->identity->files;
+        return $this->render('cabinet', compact('myfiles'));
 
     }
 }

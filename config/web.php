@@ -47,7 +47,12 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'file/<id:\d+>' => 'file/view',
+//                'file/<id:\d+>' => 'file/view',
+                'brand' => 'file/brand-list',
+                'brand/<brand:\d+>' => 'file/model-list',
+                'file/<model:\d+>' => 'file/file-list',
+                'cabinet' => 'user/cabinet',
+                'admin' => 'site/edit',
             ],
         ],
     ],

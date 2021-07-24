@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\CarBrand */
 
-$this->title = 'Create Car Brand';
+$this->title = 'Добавление';
 $this->params['breadcrumbs'][] = ['label' => 'Car Brands', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

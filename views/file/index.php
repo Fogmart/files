@@ -7,15 +7,20 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\FileSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Files';
+$this->title = 'Файлы';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
+
+
+
 <div class="file-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create File', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

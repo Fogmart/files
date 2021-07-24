@@ -34,12 +34,6 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
         ];
     }
 
@@ -163,5 +157,9 @@ class SiteController extends Controller
 
         Yii::$app->session->setFlash('error', 'Не удалось подтверить email.');
         return $this->goHome();
+    }
+
+    public function actionEdit(){
+        return $this->render('edit', []);
     }
 }

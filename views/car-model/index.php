@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CarModelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Car Models';
+$this->title = 'Модели машин';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="car-model-index">

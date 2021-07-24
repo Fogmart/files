@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\CarBrand;
+use app\models\CarModel;
 use app\models\User;
+use app\models\UserBalance;
 use app\models\UserFile;
 use Yii;
 use app\models\File;
@@ -133,11 +136,39 @@ class FileController extends Controller
 
     public function actionBuy($id){
         $u = Yii::$app->user->identity;
-        $Uf = new UserFile();
-        $Uf->user_id = $u->id;
-        $Uf->file_id = $id;
-        $Uf->save();
-
+        $file = File::find()->where(["id"=>$id])->one();
+        $balance = new UserBalance();
+        $balance->user_id = $u->id;
+        $balance->amount = -$file->price;
+        if ($balance->save()) {
+            $Uf = new UserFile();
+            $Uf->user_id = $u->id;
+            $Uf->file_id = $id;
+            $Uf->save();
+        }
     }
+
+    public function actionBrandList()
+    {
+        $lst = CarBrand::find()->all();
+
+        return $this->render('brand-lst', compact('lst'));
+    }
+
+
+    public function actionModelList($brand)
+    {
+        $lst = CarModel::find()->where(['brand_id'=>$brand])->all();
+
+        return $this->render('model-lst', compact('lst'));
+    }
+
+    public function actionFileList($model)
+    {
+        $lst = File::find()->where(['model_id'=>$model])->all();
+
+        return $this->render('file-lst', compact('lst'));
+    }
+
 }
 

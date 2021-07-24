@@ -251,6 +251,13 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(UserFile::className(), ['user_id' => 'id']);
     }
 
+    public function getFiles()
+    {
+        $files = [];
+        foreach ($this->userFiles as $file) $files[] = $file->file;
+        return $files;
+    }
+
 
     public function recalcBalance(){
         $balance = 0;
@@ -262,10 +269,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     public function getIsadmin(){
-        return $this->id == 1;
+        return $this->name == 'admin';
     }
 
-
 }
-
-

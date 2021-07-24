@@ -26,9 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
     <? }?>
-    <p>
-    <?= Html::a('Buy', ['buy', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-    </p>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

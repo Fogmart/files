@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\UserBalanceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'User Balances';
+$this->title = 'Баланс пользователей';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-balance-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create User Balance', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -25,13 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'user_id',
             'amount',
             'whn',
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
