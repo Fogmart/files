@@ -29,10 +29,12 @@ $this->title = 'Files';
                         <p><?=$item->price?> руб.</p>
                     </div>
                     <div class="col-sm-4 search_item_action">
-                        <?if ($item->isBought) {?>
-                            <a href="" ><i class="fas fa-long-arrow-alt-down"> </i>Скачать</a>
-                        <? } else {?>
-                            <button onclick="buy(<?=$item->id?>)"><i class="fas fa-shopping-cart"></i> Купить</button>
+                        <? if(!Yii::$app->user->isGuest){?>
+                            <?if ($item->isBought) {?>
+                                <a href="" ><i class="fas fa-long-arrow-alt-down"> </i>Скачать</a>
+                            <? } else {?>
+                                <button onclick="buy(<?=$item->id?>)"><i class="fas fa-shopping-cart"></i> Купить</button>
+                            <? } ?>
                         <? } ?>
                     </div>
                 </div>
